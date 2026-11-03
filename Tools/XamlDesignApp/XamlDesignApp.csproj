@@ -155,9 +155,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Dev\Typedown.Core\Typedown.Core.csproj">
+    <ProjectReference Include="..\..\Dev\Zhuandown.Core\Zhuandown.Core.csproj">
       <Project>{3538ad79-bd49-4081-b10b-090e4f75f6fb}</Project>
-      <Name>Typedown.Core</Name>
+      <Name>Zhuandown.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

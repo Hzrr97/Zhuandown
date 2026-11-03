@@ -4,7 +4,7 @@ using TranslationTool;
 Console.OutputEncoding = Encoding.Unicode;
 Console.InputEncoding = Encoding.Unicode;
 
-string projectPath = @"C:\Users\12283\Documents\GitHub\Typedown";
+string projectPath = @"C:\Users\12283\Documents\GitHub\Zhuandown";
 
 var manualLangs = new List<string>() { "en", "ja", "ko", "ru", "fr", "de", "es", "it", "nl", "ar" };
 var batch = 30;
@@ -24,8 +24,8 @@ foreach (var lang in TextDictionary.SupportedLangs.Keys.Where(x => !manualLangs.
 
 void ManualTranslate(string lang)
 {
-    var zhInputs = TextResource.ReadItems(@$"{projectPath}\Dev\Typedown.Core\Resources\Strings\zh-Hans\").ToList();
-    var enInputs = TextResource.ReadItems(@$"{projectPath}\Dev\Typedown.Core\Resources\Strings\en\").ToList();
+    var zhInputs = TextResource.ReadItems(@$"{projectPath}\Dev\Zhuandown.Core\Resources\Strings\zh-Hans\").ToList();
+    var enInputs = TextResource.ReadItems(@$"{projectPath}\Dev\Zhuandown.Core\Resources\Strings\en\").ToList();
     var dictionary = TextDictionary.ReadItems(@$"{projectPath}\Tools\TranslationTool\Dictionary\").ToList();
     dictionary = dictionary.Merge(zhInputs, "zh-Hans").ToList();
     dictionary = dictionary.Merge(enInputs, "en").ToList();
@@ -62,12 +62,12 @@ void ManualTranslate(string lang)
     }
 
     var output = dictionary.Select(x => dictionary.GetTextResourceItem(x.Table, x.Name, lang)).Where(x => !string.IsNullOrEmpty(x.Value));
-    output.WriteItems(@$"{projectPath}\Dev\Typedown.Core\Resources\Strings\{lang}\");
+    output.WriteItems(@$"{projectPath}\Dev\Zhuandown.Core\Resources\Strings\{lang}\");
 }
 
 async Task AutoTranslate(string sourceLang, string targetLang)
 {
-    var sourceInputs = TextResource.ReadItems(@$"{projectPath}\Dev\Typedown.Core\Resources\Strings\{sourceLang}\").ToList();
+    var sourceInputs = TextResource.ReadItems(@$"{projectPath}\Dev\Zhuandown.Core\Resources\Strings\{sourceLang}\").ToList();
     var dictionary = TextDictionary.ReadItems(@$"{projectPath}\Tools\TranslationTool\BingDictionary\").ToList();
     dictionary = dictionary.Merge(sourceInputs, sourceLang).ToList();
     var inputs = dictionary.Where(x => !x.Values.ContainsKey(targetLang) || string.IsNullOrEmpty(x.Values[targetLang])).ToList();
@@ -79,5 +79,5 @@ async Task AutoTranslate(string sourceLang, string targetLang)
             inputs[i].Values[resultDic.Key] = resultDic.Value;
     dictionary.WriteItems(@$"{projectPath}\Tools\TranslationTool\BingDictionary\");
     var output = dictionary.Select(x => dictionary.GetTextResourceItem(x.Table, x.Name, targetLang)).Where(x => !string.IsNullOrEmpty(x.Value));
-    output.WriteItems(@$"{projectPath}\Dev\Typedown.Core\Resources\Strings\{targetLang}\");
+    output.WriteItems(@$"{projectPath}\Dev\Zhuandown.Core\Resources\Strings\{targetLang}\");
 }

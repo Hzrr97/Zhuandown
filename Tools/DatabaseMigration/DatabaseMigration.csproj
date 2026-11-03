@@ -23,7 +23,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Dev\Typedown.Core\Typedown.Core.csproj" />
+	  <ProjectReference Include="..\..\Dev\Zhuandown.Core\Zhuandown.Core.csproj" />
 	</ItemGroup>
 
 </Project>
